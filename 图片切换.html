@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./js/vue.js"></script>
+  <style>
+    .left {
+     position: absolute;
+     display: block;
+     top: 50px;
+     left: 1px;
+     opacity: .5;
+    }
+    .right {
+     position: absolute;
+     display: block;
+     top: 50px;
+     left: 600px;
+     opacity: .5;
+    } 
+    .left:hover {
+      opacity: 1;
+    }
+    .right:hover {
+      opacity: 1;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="mask">
+    <img class="in" :src="imgarr[index]" alt="">
+    <a href="javascript:void(0)" class="left" @click="prev" v-show="index!=0">
+      <img src="./images/prev.png" alt="">
+    </a>
+    <a href="javascript:void(0)" class="right" @click="next" v-show="index<imgarr.length-1">
+      <img src="./images/next.png" alt="">
+    </a>
+  </div>
+  <script>
+    new Vue({
+      el:"#mask",
+      data:{
+        imgarr:[
+          "./images/0.jpg",
+          "./images/1.jpg",
+          "./images/2.jpg",
+          "./images/3.jpg",
+          "./images/4.jpg",
+        ],
+        index:0
+      },
+      methods:{
+        prev:function() {
+          this.index--;
+
+        },
+        next:function() {
+          this.index++;
+
+        }
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./js/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <h1>{{name.toUpperCase()}}</h1>
+    <h2>{{add}}</h2>
+  </div>
+</body>
+<script>
+  //vue实例和容器是一一对应的，真实开发中只有一个vue实例并且配合组件一起使用
+  //{{xxx}}的xxx要写js表达式，且xxx可以自动读取到该数据的地方也会自动更新
+  Vue.config.profuvtionTip = false
+  //创建Vue实例
+  new Vue({
+    el:'#root', //挂载点，用于指定当前Vue实例为哪个容器服务，值通常为CSS选择器字符串
+    data:{ //data中数据给el所指定的容器使用
+      name:'ggg',
+      add:'hhh'
+    }
+  })
+</script>
+</html>

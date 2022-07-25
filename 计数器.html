@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>计数器</title>
+  <script src="./js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div class="input-num">
+      <button @click="sub">-</button>
+      <span>{{num}}</span>
+      <button @click="add">+</button>
+    </div>
+  </div>
+  <script>
+    new Vue({
+      el:"#app",
+      data:{
+        num:"1"
+      },
+      methods:{
+        add:function() {
+          this.num++;
+          if(this.num >= 10){
+            alert("到尾了！");
+            this.num--;
+          }
+        },
+        sub:function() {
+          this.num--;
+          if(this.num<0){
+            alert("到头啦");
+            this.num++;
+          }
+
+        }
+      }
+    })
+  </script>
+</body>
+</html>

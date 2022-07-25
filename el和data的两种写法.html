@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./js/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    名字叫{{name}}
+  </div>
+  
+  
+  <script>
+   //el两种写法
+     new Vue({
+       el:'#root', //第一种写法
+       data:{ 
+         name:'ppp'
+       }
+     })
+     //第二种写法
+     const v = new Vue({
+      data:{
+        name:"ppp"
+      }
+     })
+     v.$mount("#root") //第二种写法
+     //data的两种写法
+     new Vue({
+      el:"#root",
+      //第一种：对象式
+      // data:{ 
+      //   name:"ppp"
+      // }
+      //第二种：函数式(不能使用箭头函数，一旦使用this变为window而不是vue实例)
+      data(){
+        return {
+          name:"ppp"
+        }
+      }
+     })
+     
+  </script>
+</body>
+</html>

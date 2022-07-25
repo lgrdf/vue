@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <input type="button" value="切换显示状态" @click="ss">
+    <img src="./images/cat.jpg" alt="" v-show="false" >
+    <img src="./images/cat.jpg" alt="" v-show="isShow">
+    <img src="./images/cat.jpg" alt="" v-show="age>=18">
+  </div>
+  <script>
+    new Vue({
+      el:"#app",
+      data:{
+        isShow:true,
+        age:18
+      },
+      methods:{
+        ss:function() {
+          this.isShow = !this.isShow;
+        }
+      }
+    })
+  </script>
+  
+</body>
+</html>

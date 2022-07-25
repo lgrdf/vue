@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>天知道</title>
+  <link rel="stylesheet" href="./tzd.css">
+  <script src="./js/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <h1 class="biaoti">天知道</h1>
+  <div id="app">
+    <!-- 搜索栏 -->
+  <div class="search">
+      <input type="text" autocomplete="off" autofocus="autofocus" placeholder="请输入查询的城市" class="searchinput"
+      v-model="inputvalue" >
+    <input type="button" value="搜索" class="btn" @click="search">
+  </div>
+  <!-- 直接跳转 -->
+  <div class="footer">
+    <a href="javascript:void(0)" v-for="item in cities" @click="change(item)">{{item}}&nbsp;</a>
+  </div>
+  <!-- 天气显示 -->
+  <div class="climate" v-show="inputvalue!=''">
+    <table >
+      <tr class="first">
+        <th v-for="item in content">{{item.type}}</th>
+      </tr>
+      <tr class="second">
+        <td v-for="item in content">{{item.high +"~"+item.low}}</td>
+      </tr>
+      <tr class="third">
+        <td v-for="item in content">{{item.date}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+  <script>
+    /*
+    请求地址：http://wthrcdn.etouch.cn/weather_mini
+    请求方法：get
+    请求参数：city
+    响应内容：天气信息
+    */
+   new Vue({
+    el:"#app",
+    data:{
+      inputvalue:"",
+      cities:['北京','上海','广州','深圳'],
+      content:[]
+    },
+    methods:{
+      search:function() {
+        var that = this;
+        axios.get("http://wthrcdn.etouch.cn/weather_mini?city="+that.inputvalue)
+        .then(function(response){
+          console.log(response);
+          that.content = response.data.data.forecast;
+        })
+        .catch(function(err){
+          console.log(err);
+        })
+      },
+      change:function(name) {
+        this.inputvalue = name;
+        this.search();
+      }
+    }
+   })
+
+  </script>
+</body>
+</html>
